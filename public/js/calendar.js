@@ -28,23 +28,20 @@ function displayCalendar(){
                 <td>금</td>\
                 <td>토</td>\
             </tr>';
-    /*
-    1. 빈칸을 출력해준다.
-    2. 칸에 맞게 숫자를 출력한다.
-    3. 숫자가 endDates와 같으면 루프 빠져나옴
-    */
+
     let space = firstDate.getDay(); // 첫 주 시작일 전 빈칸 갯수
     for(let i=0; i<columns; i++){
         html+='<tr>';
-        
-        for(let j=0; j<space; j++)
+
+        for(let j=0; j<space; j++)  // 1. 빈칸을 출력해준다.
             html += '<td></td>';    
 
-        for(let j=0; j<7-space; j++){
+        for(let j=0; j<7-space; j++){   // 2. 칸에 맞게 숫자를 출력한다.
             html += `<td>${day++}</td>`;
-            if(day > endDates[currentMonth]) break;
+
+            if(day > endDates[currentMonth]) break; // 3. 숫자가 endDates 보다 크면 루프 빠져나옴
         }
-        
+
         space=0;
         html+='</tr>';
     }
