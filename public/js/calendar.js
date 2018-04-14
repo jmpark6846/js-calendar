@@ -5,21 +5,20 @@ $(document).ready(function(){
 function displayCalendar(){
     let now = new Date(),
         currentYear = now.getFullYear(),
-        currentMonth = 4,//now.getMonth(),
+        currentMonth = now.getMonth(),
         currentDate = now.getDate(),
         currentDay = now.getDay();
 
     let html = "";
 
-    let endDates = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-    let firstDate = new Date(Date.UTC(currentYear, currentMonth, 1)),
+    let endDates = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]; // 매 달 마지막 날짜
+    let firstDate = new Date(Date.UTC(currentYear, currentMonth, 1)), // 해당 달 첫째날
         startDayOfWeek = 0, // 한 주의 시작은 일요일
-        columns = (currentMonth === 2) && (startDayOfWeek === firstDate.getDay()) ? 4 : 5,
+        columns = (currentMonth === 2) && (startDayOfWeek === firstDate.getDay()) ? 4 : 5, // 달력 전체 column 수 계산. 2월 중 달 첫째날 요일이 한 주 시작 요일과 같은 경우는 4줄, 다른 모든 경우는 5줄이다.
         day=1;
 
-
-
-    html += '<table> 달력\
+    html += '<div>' + (currentMonth+1) + '월</div>\
+            <table>\
             <tr>\
                 <td>일</td>\
                 <td>월</td>\
@@ -29,36 +28,24 @@ function displayCalendar(){
                 <td>금</td>\
                 <td>토</td>\
             </tr>';
-
-
-
     /*
     1. 빈칸을 출력해준다.
-        1-1 
     2. 칸에 맞게 숫자를 출력한다.
     3. 숫자가 endDates와 같으면 루프 빠져나옴
     */
-    let temp=0;
+    let space = firstDate.getDay(); // 첫 주 시작일 전 빈칸 갯수
     for(let i=0; i<columns; i++){
         html+='<tr>';
         
-        if(i===0){
-            for(temp=0; temp<7; temp++){
-                if(firstDate.getDay() !== temp)
-                    html += '<td></td>';
-                else
-                    break;
-            }
-            
-        }
-        console.log(temp);
-        for(let j=0; j<7-temp; j++){
-            html += `<td> ${day++}</td>`;
+        for(let j=0; j<space; j++)
+            html += '<td></td>';    
 
+        for(let j=0; j<7-space; j++){
+            html += `<td>${day++}</td>`;
             if(day > endDates[currentMonth]) break;
-            
         }
-        temp=0;
+        
+        space=0;
         html+='</tr>';
     }
     html+='</table>';
