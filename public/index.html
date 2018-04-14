@@ -17,7 +17,7 @@
             c.displayCalendar('#calendar');
 
             $('input#month').on('blur', function(){
-                c.setYearMonth(this.value.split('-')[0], this.value.split('-')[1]-1);
+                c.setCalendar(this.value.split('-')[0], this.value.split('-')[1]-1);
                 c.displayCalendar('#calendar');
             });
         });

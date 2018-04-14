@@ -3,7 +3,7 @@ class Calendar {
         this.year = year;
         this.month = month;
     }
-    setYearMonth(year, month){
+    setCalendar(year, month){
         this.year = year;
         this.month = month;
     }
