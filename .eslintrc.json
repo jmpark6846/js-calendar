@@ -1,0 +1,5 @@
+{
+    "extends": "google",
+    "no-console": "off",
+    "quotes": "off"
+}
