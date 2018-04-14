@@ -12,9 +12,16 @@
       crossorigin="anonymous"></script>
     <script type="text/javascript" src="js/calendar.js" charset="utf-8"></script>
     <script>
-    $('input#month').on('blur', function(){
-        displayCalendar(this.value.split('-')[0], this.value.split('-')[1]-1);
-    });
+        $( function(){
+            let c = new Calendar();
+            c.displayCalendar('#calendar');
+
+            $('input#month').on('blur', function(){
+                c.setYearMonth(this.value.split('-')[0], this.value.split('-')[1]-1);
+                c.displayCalendar('#calendar');
+            });
+        });
+        
     </script>
 </body>
 </html>
