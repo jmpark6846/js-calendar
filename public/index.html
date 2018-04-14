@@ -4,12 +4,17 @@
     <title>Javascript Calendar</title>
 </head>
 <body>
-
+    <input id="month" type="month">
     <div id="calendar"></div>
     <script
       src="https://code.jquery.com/jquery-3.3.1.min.js"
       integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
       crossorigin="anonymous"></script>
     <script type="text/javascript" src="js/calendar.js" charset="utf-8"></script>
+    <script>
+    $('input#month').on('blur', function(){
+        displayCalendar(this.value.split('-')[0], this.value.split('-')[1]-1);
+    });
+    </script>
 </body>
 </html>
